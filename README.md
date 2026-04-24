@@ -1,6 +1,6 @@
 # 🍔 Big Burg's do João - Landing Page
 
-<img width="1902" height="941" alt="image" src="https://github.com/user-attachments/assets/daf9cf9d-2cd2-49d9-a941-887c8a176732" />
+<img width="1902" height="941" alt="image" src="assets/HeroBBJ.png" />
 
 
 ## 🚀 Sobre o Projeto
@@ -26,6 +26,6 @@ Você pode visualizar o projeto em execução através do link abaixo:
 ## 👨‍💻 Desenvolvedor
 Desenvolvido por **Davi Linhares**.
 
-* **LinkedIn:** [[linharessdavi]](https://www.linkedin.com/in/linharessdavi/)
+* **LinkedIn:** [linharessdavi](https://www.linkedin.com/in/linharessdavi/)
 * **Instagram:** [@linharessdavi](https://instagram.com/linharessdavi)
 * **GitHub:** [DaviLinharess](https://github.com/DaviLinharess)

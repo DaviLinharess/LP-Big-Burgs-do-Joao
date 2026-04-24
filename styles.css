@@ -1,0 +1,1077 @@
+/* Importação das fontes Google */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@700&family=Nunito:wght@700;800;900&display=swap');
+
+/* ====== VARIÁVEIS DE TEMA (Dark Mode & Laranja Destaque) ====== */
+:root {
+    --bg-color: #0D0D0D;
+    --bg-surface: #1C1C1C;
+    --bg-surface-light: #2A2A2A;
+    --accent: #FF9A00;
+    --accent-hover: #FFB340;
+    --text-light: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* ====== RESET E CONFIGURAÇÕES GLOBAIS ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+/* ====== COMPONENTES GLOBAIS DE UI ====== */
+.btn {
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #0D0D0D;
+}
+
+.btn-primary:hover {
+    transform: scale(1.08) translateY(-2px);
+    background-color: var(--accent-hover);
+    box-shadow: 0 10px 25px rgba(255, 154, 0, 0.4);
+}
+
+/* ====== HEADER MINIMALISTA (Baseado no Tailwind) ====== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #FFB800;
+    /* brand-yellow */
+    letter-spacing: 2px;
+}
+
+.header-logo-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav a:hover {
+    color: #FFB800;
+    transform: translateY(-2px);
+}
+
+.header-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.header-actions a,
+.header-actions button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-actions a:hover,
+.header-actions button:hover {
+    color: #FFB800;
+    transform: scale(1.1);
+}
+
+/* ====== HERO SECTION 3D CAMADAS (100% Nativo CSS) ====== */
+.hero-3d {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Fundo Gradiente Radial Base Escuro (Ajustado para o tom âmbar profundo da referência) */
+    background: radial-gradient(circle at center, #4a2608 0%, #1a0d02 40%, #000000 60%);
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Camada Intermediária: Texto Gigante BURGER */
+.hero-massive-text {
+    position: absolute;
+    top: 48%;
+    /* Restaurado para o centro absoluto para abraçar a imagem */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: clamp(6.5rem, 20vw, 16rem);
+    color: #FFB800;
+    /* Amarelo Vibrante */
+    line-height: 0.82;
+    letter-spacing: -3px;
+    text-align: center;
+    width: 100%;
+    /* Permite expandir maximizado nos cantos */
+    z-index: 10;
+    user-select: none;
+    opacity: 0.95;
+    text-shadow: 0px 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Camada Frontal: Composição Principal */
+.hero-composition {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Iluminação fosca saindo de trás do hambúrguer */
+.hero-composition::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 100, 15, 0.45) 0%, rgba(46, 21, 3, 0) 70%);
+    filter: blur(60px);
+    z-index: 15;
+    /* Logo atrás da imagem principal */
+    pointer-events: none;
+}
+
+/* Imagem Poup-Out Hambúrguer (Destacada e Maior) */
+.burger-main-img {
+    width: 100%;
+    max-width: 1050px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 60px 45px rgba(0, 0, 0, 0.95));
+    position: relative;
+    z-index: 30;
+}
+
+/* Keyframes Flutuação (CSS Animação) */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes floatAlt {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-5deg);
+    }
+}
+
+.float-slow {
+    animation: float 5s ease-in-out infinite;
+}
+
+.float-fast {
+    animation: floatAlt 4s ease-in-out infinite;
+}
+
+/* Botão Forma de Pílula Laranja Vibrante abaixo de tudo */
+.cta-hero-btn {
+    position: relative;
+    z-index: 50;
+    margin-top: -100px;
+    /* Margem negativa profunda para ignorar a caixa de contorno longa (vazia) dos pingos na base do PNG */
+}
+
+.btn-pill {
+    padding: 16px 55px;
+    border-radius: 60px;
+    background-color: #FF5722;
+    /* Laranja Vibrante */
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 15px 35px rgba(255, 87, 34, 0.4);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-pill:hover {
+    background-color: #E64A19;
+    transform: scale(1.05) translateY(-3px);
+    color: #fff;
+}
+
+
+/* ============================================================
+   SECTION: BURGER SHOWCASE (FILE MIGNON E CORAÇÃO)
+   ============================================================ */
+
+.burger-showcase {
+    display: grid;
+    grid-template-columns: 280px 280px 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+    background-color: #030303;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    padding: 120px 5% 120px 10%;
+}
+
+.burger-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(#080808 10%, transparent 11%),
+        radial-gradient(#080808 10%, transparent 11%);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.burger-column {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+
+.column-right {
+    padding-left: 40px;
+    z-index: 3;
+}
+
+.oval-shape {
+    background-color: #FFC400;
+    width: 210px;
+    height: 380px;
+    border-radius: 500px;
+    position: relative;
+    overflow: visible;
+}
+
+.shape-left {
+    transform: translateY(40px);
+}
+
+.shape-right {
+    transform: translateY(-40px);
+}
+
+.burger-image {
+    position: absolute;
+    width: 650px;
+    max-width: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+}
+
+.text-content {
+    color: white;
+    text-align: left;
+}
+
+.sub-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #CCCCCC;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.ampersand {
+    font-weight: 300;
+    color: #FFC400;
+}
+
+.description {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    color: #AAAAAA;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .burger-showcase {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 80px 5% 80px 5%;
+        gap: 80px;
+    }
+
+    .burger-column {
+        justify-content: center;
+    }
+
+    .column-right {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .text-content {
+        text-align: center;
+    }
+
+    .shape-left,
+    .shape-right {
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   SECTION: OS QUERIDINHOS (TOP 4 ZIG-ZAG PARALLAX)
+   ============================================================ */
+
+.bestsellers {
+    position: relative;
+    width: 100%;
+    background-color: #030303;
+    padding: 40px 5% 120px 5%;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.bestseller-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 40px auto;
+    /* Afastamento dramático entre sanduíches */
+    padding: 20px;
+    z-index: 2;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* O número gigante de fundo */
+.bg-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 35rem;
+    /* Tipografia Massiva */
+    color: rgba(255, 184, 0, 0.04);
+    /* Quase invisível, apenas rastro de luz */
+    z-index: -1;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -20px;
+}
+
+.bestseller-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.produto-flutuante {
+    width: 120%;
+    /* Imagem grande que vaza os limites naturais da div flex */
+    max-width: 750px;
+    height: auto;
+    filter: drop-shadow(0px 30px 45px rgba(0, 0, 0, 0.8));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bestseller-row:hover .produto-flutuante {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.row-reverse:hover .produto-flutuante {
+    transform: scale(1.08) rotate(3deg);
+}
+
+.bestseller-info {
+    flex: 1;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bestseller-info .sub-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #FFB800;
+    /* Amarelo vibrante */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.bestseller-info .main-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+
+.bestseller-info .highlight {
+    color: #FF5722;
+    /* Laranja da marca */
+}
+
+.bestseller-info .description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #aaaaaa;
+    line-height: 1.6;
+    margin-bottom: 45px;
+}
+
+.purchase-box {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.purchase-box .price {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+/* Zague mobile breakdown */
+@media (max-width: 1024px) {
+
+    .bestseller-row,
+    .row-reverse {
+        flex-direction: column;
+        /* Empilha no celular */
+        text-align: center;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .bestseller-info {
+        padding: 0 10px;
+        align-items: center;
+    }
+
+    .produto-flutuante {
+        width: 100%;
+    }
+
+    .bg-number {
+        font-size: 18rem;
+        top: 20%;
+    }
+
+    .bestseller-info .main-title {
+        font-size: 3rem;
+    }
+
+    .purchase-box {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 60px;
+}
+
+/* Responsividade Geral */
+@media (max-width: 992px) {
+    .header {
+        padding: 20px 4%;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .section-title h2 {
+        font-size: 2.8rem;
+    }
+
+
+    .burger-main-img {
+        max-width: 85%;
+    }
+}
+
+/* ============================================================
+   UTILITÁRIOS: ANIMAÇÕES DE SCROLL
+   ============================================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================================
+   SECTION: NOSSAS UNIDADES
+   ============================================================ */
+
+.locations-section {
+    padding: 100px 5%;
+    background-color: #030303;
+    position: relative;
+    z-index: 10;
+}
+
+.locations-section .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.locations-section .sub-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #FFB800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.locations-section .main-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.locations-section .highlight {
+    color: #FF5722;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.location-card {
+    background-color: #0d0d0d;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 87, 34, 0.4);
+}
+
+.location-image {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+}
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.location-card:hover .location-image img {
+    transform: scale(1.06);
+}
+
+.location-info {
+    padding: 40px;
+}
+
+.location-info h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.location-info .address {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #aaaaaa;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.location-info .address i {
+    color: #FF5722;
+    font-size: 1.4rem;
+    margin-top: 3px;
+}
+
+.location-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.location-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    padding: 15px 30px;
+}
+
+.whatsapp-btn {
+    background-color: #25D366;
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn:hover {
+    background-color: #1EBE5D;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .location-image {
+        height: 250px;
+    }
+
+    .locations-section .main-title {
+        font-size: 2.8rem;
+    }
+}
+
+
+
+
+
+.dev-info {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+}
+
+.dev-info p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+
+.dev-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 0.5rem;
+}
+
+.dev-links a {
+    color: #CCCCCC;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dev-links a i {
+    color: #FF5722;
+    /* Laranja da Hamburgueria */
+    font-size: 1.6rem;
+    transition: transform 0.3s ease;
+}
+
+.dev-links a:hover {
+    color: #FFFFFF;
+}
+
+.dev-links a:hover i {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* ============================================================
+   SECTION: NOSSA HISTÓRIA
+   ============================================================ */
+
+.history-section {
+    background-color: var(--bg-surface);
+    padding: 120px 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.history-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 60px;
+}
+
+.history-image-col {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.history-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.history-img {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    object-fit: cover;
+    aspect-ratio: 4/5;
+    background-color: #0d0d0d;
+}
+
+.history-frame {
+    position: absolute;
+    top: 25px;
+    left: -25px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--accent);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.history-text-col {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.history-text-col .sub-headline {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.history-text-col .main-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-light);
+    line-height: 1;
+    margin-bottom: 35px;
+}
+
+.history-text-col .highlight {
+    color: var(--accent);
+}
+
+.history-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #cccccc;
+    margin-bottom: 20px;
+    font-family: var(--font-body);
+}
+
+.history-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-number i {
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .history-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 80px;
+    }
+
+    .history-text-col {
+        padding-left: 0;
+    }
+
+    .history-frame {
+        top: 15px;
+        left: -15px;
+    }
+
+    .history-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* ============================================================
+   SECTION: CTA CARDÁPIO COMPLETO
+   ============================================================ */
+
+.full-menu-cta {
+    position: relative;
+    text-align: center;
+    margin-top: 100px;
+    padding: 60px 20px;
+    background: linear-gradient(145deg, #0a0502, #140904);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 87, 34, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 5;
+}
+
+.full-menu-cta .sub-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #FFB800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.full-menu-cta .main-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.full-menu-cta .highlight {
+    color: #FF5722;
+}
+
+.full-menu-cta .description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #aaaaaa;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-prudente,
+.btn-parnamirim {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    padding: 16px 35px;
+}
+
+.btn-prudente {
+    background-color: #FF5722;
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(255, 87, 34, 0.4);
+}
+
+.btn-prudente:hover {
+    background-color: #e64a19;
+    color: #fff;
+}
+
+.btn-parnamirim {
+    background-color: #FFB800;
+    color: #111;
+    box-shadow: 0 15px 35px rgba(255, 184, 0, 0.4);
+}
+
+.btn-parnamirim:hover {
+    background-color: #e5a600;
+    color: #111;
+}
+
+@media (max-width: 768px) {
+    .full-menu-cta .main-title {
+        font-size: 2.2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn-prudente,
+    .btn-parnamirim {
+        width: 100%;
+        justify-content: center;
+    }
+}
